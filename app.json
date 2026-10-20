@@ -3,30 +3,26 @@
     "name": "coffee_shop",
     "slug": "coffee_shop",
     "version": "1.0.0",
-
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
     "plugins": [
       [
         "expo-splash-screen",
         {
           "image": "./assets/splash.png",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#1A0F0A"
         }
-      ]
+      ],
+      "expo-image",
+      "expo-status-bar"
     ],
-
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true

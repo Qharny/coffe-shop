@@ -1,0 +1,49 @@
+import { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
+import SplashScreen from '@/screen/splash/Splashscreen';
+import './global.css';
+import { ScreenContent } from './components/ScreenContent';
+
+export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  return (
+    <SafeAreaProvider>
+      {showSplash ? (
+        <SplashScreen onFinish={() => setShowSplash(false)} />
+      ) : (
+        <View style={styles.container}>
+          <ScreenContent title="Coffee Shop" path="App.tsx" />
+          <TouchableOpacity
+            onPress={() => setShowSplash(true)}
+            style={styles.replayButton}
+            activeOpacity={0.8}>
+            <Text style={styles.replayText}>Replay Splash Screen</Text>
+          </TouchableOpacity>
+          <StatusBar style="auto" />
+        </View>
+      )}
+    </SafeAreaProvider>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  replayButton: {
+    alignSelf: 'center',
+    marginBottom: 32,
+    backgroundColor: '#1A0F0A',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  replayText: {
+    color: '#F5E6D3',
+    fontWeight: '600',
+    fontSize: 14,
+  },
+});
