@@ -5,20 +5,16 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 import * as NativeSplashScreen from 'expo-splash-screen';
+import { COLORS } from '@/constant/colos';
 
-const COLORS = {
-  cream: '#F5E6D3',
-  latte: '#C8A27A',
-  espresso: '#1A0F0A',
-};
+
 
 type Props = {
-  // onFinish?: () => void; // called after the splash duration (e.g. router.replace('/home'))
+  onFinish?: () => void; 
   duration?: number; // ms the splash stays up
 };
 
-// export default function SplashScreen({ onFinish, duration = 2800 }: Props) {
-export default function SplashScreen({ duration = 2800 }: Props) {
+export default function SplashScreen({ onFinish, duration = 2800 }: Props) {
   const insetsContext = useContext(SafeAreaInsetsContext);
   const insets = insetsContext ?? { top: 0, bottom: 0, left: 0, right: 0 };
 
@@ -70,14 +66,12 @@ export default function SplashScreen({ duration = 2800 }: Props) {
     );
     pulse.start();
 
-    // const t = setTimeout(() => onFinish?.(), duration);
-    const t = setTimeout(() => {}, duration);
+    const t = setTimeout(() => onFinish?.(), duration);
     return () => {
       clearTimeout(t);
       pulse.stop();
     };
-  // }, [bgScale, dot, duration, lineWidth, onFinish, textOpacity, textY]);
-  }, [bgScale, dot, duration, lineWidth, textOpacity, textY]);
+  }, [bgScale, dot, duration, lineWidth, onFinish, textOpacity, textY]);
 
   const accentWidth = lineWidth.interpolate({ inputRange: [0, 1], outputRange: [0, 56] });
 

@@ -1,12 +1,21 @@
-import HomeScreen from '@/screen/home/Home';
+import React, { useState } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from '@/screen/splash/Splashscreen';
-import { View } from 'react-native';
+import MainNavigator from '@/navigation/MainNavigator';
 
 export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
   return (
-    <View style={{ flex: 1 }}>
-      <SplashScreen />
-      {/* <HomeScreen /> */}
-    </View>
+    <SafeAreaProvider>
+      {showSplash ? (
+        <SplashScreen
+          duration={2800}
+          onFinish={() => setShowSplash(false)}
+        />
+      ) : (
+        <MainNavigator />
+      )}
+    </SafeAreaProvider>
   );
 }
